@@ -10,7 +10,7 @@ User logged in as Student can Add, Delete or Modify Tuition post. Student can ca
 
 Also, premium teacher is made by some rating system. Student can give rating to teachers. Based on the rating teacher can be Premium.
 
-### Homepage
+## Homepage
 
 Homepage consists of top menu, holding Website logo and navigation links. It is changed based on the guest or logged in users. Then a slider in the left side, and right side contains some ads.
 
@@ -19,6 +19,24 @@ Homepage consists of top menu, holding Website logo and navigation links. It is 
 The middle and lower part of the homepage contains information and featured list of premium tutors. A slider containing Recent tuition post.
 
 [Homepage 2](pics/homepage2.png)
+
+## Circulars
+
+Circulars page contains the list of the recent circulars. These circulars can be filtered based on some criteria.
+
+[Circular list](pics/circulars.png)
+
+Guest user only can view the circular details
+
+[Guest user circular view](pics/circular details guest user.png)
+
+Tutor can view the apply option in circular details page
+
+[Tutor circular view](pics/circular details tutor view.png)
+
+Circular giver Student can modify, edit or delete this and view requests
+
+[Student circular view](pics/circular details student view.png)
 
 # Frameworks Used
 
