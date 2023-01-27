@@ -14,29 +14,35 @@ Also, premium teacher is made by some rating system. Student can give rating to 
 
 Homepage consists of top menu, holding Website logo and navigation links. It is changed based on the guest or logged in users. Then a slider in the left side, and right side contains some ads.
 
-[Homepage 1](pics/homepage1.png)
+![Homepage 1](pics/homepage1.png)
 
 The middle and lower part of the homepage contains information and featured list of premium tutors. A slider containing Recent tuition post.
 
-[Homepage 2](pics/homepage2.png)
+![Homepage 2](pics/homepage2.png)
 
 ## Circulars
 
 Circulars page contains the list of the recent circulars. These circulars can be filtered based on some criteria.
 
-[Circular list](pics/circulars.png)
+![Circular list](pics/circulars.png)
 
 Guest user only can view the circular details
 
-[Guest user circular view](pics/circular_details_guest_user.png)
+![Guest user circular view](pics/circular_details_guest_user.png)
 
 Tutor can view the apply option in circular details page
 
-[Tutor circular view](pics/circular_details_tutor_view.png)
+![Tutor circular view](pics/circular_details_tutor_view.png)
 
 Circular giver Student can modify, edit or delete this and view requests
 
-[Student circular view](pics/circular_details_student_view.png)
+![Student circular view](pics/circular_details_student_view.png)
+
+## Tutors
+
+Tutors page contains the list of all the tutors showing little information
+
+![Tutor list page](pics/tutor_list.png)
 
 # Frameworks Used
 
