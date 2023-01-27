@@ -28,7 +28,7 @@ Circulars page contains the list of the recent circulars. These circulars can be
 
 Guest user only can view the circular details
 
-[Guest user circular view](pics/circular details guest user.png)
+[Guest user circular view](pics/circular\ details\ guest\ user.png)
 
 Tutor can view the apply option in circular details page
 
