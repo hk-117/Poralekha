@@ -1,0 +1,98 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block main %}
+  <br>
+  <br>
+  <div class="row">
+      <form class="col s12" action="{% url 'user-register' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+          <input type="hidden" name="usertype" value="{{usertype}}">
+          <input type="hidden" name="email" value="{{email}}">
+          <div class="col s9 offset-s3">
+            <div class="container card-panel">
+              <div class="row">
+                <blockquote> <h4> Account Info </h4> </blockquote>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                      {{userform.as_p}}
+                </div>
+              </div>
+              <div class="row">
+                <blockquote> <h4> Personal Information </h4> </blockquote>
+              </div>
+              <br><br>
+              <div class="row">
+                <div class="input-field col s6">
+                    <label for="{{form.first_name.id_for_label}}">FirstName</label>
+                    {{form.first_name}}
+                </div>
+                <div class="input-field col s6">
+                    <label for="{{form.last_name.id_for_label}}">LastName</label>
+                    {{form.last_name}}
+                </div>
+              </div>
+              <div class="row">
+                <blockquote> <h6> Profile Picture </h6> </blockquote>
+                 {{form.profile_pic}}
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <label for="{{form.address_phone.id_for_label}}">PhoneNumber</label>
+                    {{form.address_phone}}
+                </div>
+                <div class="input-field col s6">
+                    {% if usertype != "T" %}
+                        {{form.info_gender}}
+                    {% else %}
+                        {{form.gender}}
+                    {% endif %}
+                    <label> Select Gender</label>
+                </div>
+              </div>
+              <div class="row">
+                <blockquote> <h6> Address </h6> </blockquote>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    {{form.address_division}}
+                    <label>Select Division</label>
+                </div>
+                <div class="input-field col s6">
+                    {{form.address_district}}
+                    <label>Select District</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="{{form.address_present.id_for_label}}">Present Address (With Area)</label>
+                  {{form.address_present}}
+                </div>
+              </div>
+              {% if usertype != "S" %}
+                  {% include 'users/forms/tutorup.html' %}
+              {% else %}
+                  {% include 'users/forms/studentup.html' %}
+              {% endif %}
+              <div class="row">
+                <div class="input-field col s4 offset-s4">
+                  <input type="submit" value="Confirm Registration" class="btn red">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </form>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, {});
+    });
+  </script>
+{% endblock %}

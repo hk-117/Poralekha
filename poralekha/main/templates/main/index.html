@@ -1,0 +1,192 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}
+  Poralekha.com
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+      <div class="col s1"></div>
+      <div class="col s11 m7 l7">
+        <div class="row">
+          <br>
+          <div class="col s12">
+            <div class="slider">
+              <ul class="slides">
+                <li>
+                  <img src="{% static 'images/carousel1.jpg' %}">
+                  <div class="caption center-align">
+                    <h3>Join Today!</h3>
+                    <h5 class="light grey-text text-lighten-3">Find tuition jobs everywhere free.</h5>
+                  </div>
+                </li>
+                <li>
+                  <img src="{% static 'images/carousel2.jpg' %}">
+                  <div class="caption left-align">
+                    <h3>Join Our Community!</h3>
+                    <h5 class="light grey-text text-lighten-3">With More than 2000 Students</h5>
+                    <h5 class="light grey-text text-lighten-3">and More than 1500 Teachers</h5>
+                  </div>
+                </li>
+                <li>
+                    <img src="{% static 'images/carousel3.jpg' %}">
+                  <div class="caption right-align">
+                    <h3>Find Perfect Tuiton !!!</h3>
+                    <h5 class="light grey-text text-lighten-3">With more than 4000 live Tuition jobs</h5>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="divider"></div>
+          <blockquote><h4 class="center-align"> Premium Tutors </h4></blockquote>
+            {% for tutor in tutors %}
+            <div class="col s12 m6 l6">
+              <div class="card-panel grey lighten-5 z-depth-1">
+                  <a href="{% url 'tutor-detail' tutor.id %}">
+                  <div class="row valign-wrapper">
+                    <div class="col s3">
+                        <img src="{{ tutor.profile_pic.url }}" alt="{{tutor.username}}" class="circle responsive-img">
+                    </div>
+                    <div class="col s9">
+                        <div class="row">
+                      <span class="black-text">
+                        <ul>
+                            <li><h5>{{tutor.first_name}} {{tutor.last_name}}</h5></li>
+                            <li>{{tutor.institute}}</li>
+                            <li>{{tutor.qualification}}</li>
+                        </ul>
+                      </span>
+                        </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+
+      <div class="col s1"></div>
+      <div class="col s11 m3 l3">
+        <div class="row">
+          <div class="col s12">
+            <div class="card deep-purple accent-2">
+              <div class="card-content white-text">
+                <span class="card-title">Teach in a coaching</span>
+                <p>Dears..Udvash Academic and Admission coaching is hiring teachers...Feel free to contact..</p>
+              </div>
+              <div class="card-action">
+                <a href="#" class="btn">view</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s12">
+            <div class="card deep-purple accent-2">
+              <div class="card-content white-text">
+                <span class="card-title">Admission Going on...</span>
+                <p>Borno Admission coaching is taking students with great offer..!! Hurry up .
+                  Get a chance of scholarship.........
+                </p>
+              </div>
+              <div class="card-action">
+                <a href="#" class="btn">view</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row container">
+      <div class="divider"></div>
+      <h4 class="center-align"> Recent Posts </h4>
+      <div class="col s12">
+        <div class="carousel carousel-slider center">
+            {% for tution in tutions %}
+                <div class="carousel-item" >
+                <div class="col s12">
+                  <div class="card white darken-3 z-depth-3">
+                    <div class="card-content black-text">
+                      <span class="card-title">
+                        <blockquote>
+                            <h5> 
+                                {{tution.post_title}} 
+                            </h5>
+                        </blockquote>
+                      </span>
+                      <p>
+                        <strong>Job ID: </strong> <i>{{tution.id}}</i> | 
+                        <strong>Created Date: </strong> <i>{{tution.time_created}} </i>|
+                        <strong> Posted By: </strong> <i><a href="{% url 'student-detail' tution.posted_by.id %}">{{tution.posted_by}}</a></i>
+                      </p>
+                      <div class="divider"></div>
+                      <br>
+                      <div class="row">
+                        <div class="col s4">
+                          <p>
+                            <strong>Salary: </strong>
+                            <i>{{tution.salary}}</i>
+                          </p>
+                        </div>
+                        <div class="col s4">
+                          <p>
+                            <strong>Class: </strong>
+                            <i>{{tution.student_class}}</i>
+                          </p>
+                        </div>
+                        <div class="col s4">
+                          <p>
+                            <strong>Category: </strong>
+                            <i>{{tution.student_medium}}</i>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s4">
+                          <p>
+                            <strong>Subjects: </strong>
+                            <i>{{tution.student_subjects}}</i>
+                          </p>
+                        </div>
+                        <div class="col s4">
+                          <p>
+                            <strong>Location: </strong>
+                            <i>{{tution.student_location}}</i>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-action">
+                        {% if not tution.confirmed %}
+                        <a href="{% url 'circular-detail' tution.id %}" class="btn">View Details</a>
+                        {% else %}
+                        <p class="btn red">Confirmed!!!</p>
+                        {% endif %}
+                    </div>
+                  </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.slider');
+        var instances = M.Slider.init(elems, {});
+      });
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.carousel');
+        var instances = M.Carousel.init(elems, {});
+        var instance = M.Carousel.init({
+            fullWidth: true,
+            indicators: true,
+            duration: 200,
+        });
+      });
+    </script>
+{% endblock %}

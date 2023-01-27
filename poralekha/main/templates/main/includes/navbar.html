@@ -1,0 +1,41 @@
+{% load static %}
+<div class="navbar-fixed">
+  <nav class="deep-purple accent-2">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo"><img class="img-responsive" style="height:50px; margin-top:5px; margin-left:100px;" src="{% static 'images/logo.png' %}"></a>
+      <a href="#" data-target="snav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="{% url 'homepage' %}">Home</a></li>
+          <li><a href="{% url 'circular-list' %}">Circulars</a></li>
+          {% if user.is_authenticated and user.first_name == "S" %}
+              <li><a href="{% url 'circular-new' %}">Create Circular</a></li>
+          {% endif %}
+          <li><a href="{% url 'tutor-list' %}">Tutors</a></li>
+          <li><a href="{% url 'discussion-faqs' %}">FAQs</a></li>
+          <li><a href="{% url 'about-us' %}">About Us</a></li>
+          {% if user.is_authenticated and user.first_name %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'users-logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'users-login' %}">Login/Signup</a></li>
+          {% endif %}
+        </ul>
+    </div>
+  </nav>
+  <ul class="sidenav" id="snav">
+    <li><a href="{% url 'homepage' %}">Home</a></li>
+    <li><a href="{% url 'circular-list' %}">Circulars</a></li>
+      {% if user.is_authenticated and user.first_name == "S" %}
+          <li><a href="{% url 'circular-new' %}">Create Circular</a></li>
+      {% endif %}
+    <li><a href="{% url 'tutor-list' %}">Tutors</a></li>
+    <li><a href="{% url 'discussion-faqs' %}">FAQs</a></li>
+    <li><a href="{% url 'about-us' %}">About Us</a></li>
+      {% if user.is_authenticated  and user.first_name %}
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+        <li><a href="{% url 'users-logout' %}">Logout</a></li>
+      {% else %}
+        <li><a href="{% url 'users-login' %}">Login/Signup</a></li>
+      {% endif %}
+  </ul>
+</div>

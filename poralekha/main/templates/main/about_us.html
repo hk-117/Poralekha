@@ -1,0 +1,47 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+  About Us
+{% endblock %}
+{% block main %}
+  <!--Main content start -->
+  <div class="container">
+    <div class="card-panel lime lighten-5">
+      <h3 class="center-align card-panel">About Us</h3>
+      <div class="divider"></div>
+      <div class="section">
+        <h6 class="center-align"> For any further Query:</h6>
+        <p class="center-align"> <strong> Phone: </strong> 015XXXXXXXX </p>
+      </div>
+      <div class="row">
+          <div class="col s12 card-panel">
+            <blockquote><h5 class="center-align"> Leave a message </h5></blockquote>
+            <br>
+            <form action="{% url 'sent-message' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="receiver_email" value="u1704098@student.cuet.ac.bd">
+              <div class="input-field">
+                <input type="text" name="sender_name" placeholder="type your name..." class="validate" id="name">
+                <label for="name">Name</label>
+              </div>
+              <div class="input-field">
+                <input type="email" name="sender_email" placeholder="type your e-mail address..." class="validate" id="email">
+                <label for="email">E-mail address</label>
+              </div>
+              <div class="input-field">
+                <input type="text" name="sender_phone" placeholder="phone number..." class="validate" id="number">
+                <label for="number">Phone</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="textarea1" class="materialize-textarea" name="message"></textarea>
+                <label for="textarea1">Message</label>
+              </div>
+              <input type="submit" name="submit" value="Send Message" class="waves-effect waves-light btn card-panel">
+            </form>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <!--End of Main Content -->
+{% endblock %}

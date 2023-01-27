@@ -1,0 +1,135 @@
+{% extends 'main/base.html' %}
+{% block title %}
+    {{profile_data.first_name}} {{profile_data.last_name}}
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+
+    <!-- main profile -->
+
+    <blockquote><h5> Dashboard </h5></blockquote>
+    <div class="row">
+      <div class="col s9">
+          <ul class="collection">
+            <li class="collection-item">
+
+              <div class="row">
+                <div class="col s4">
+                    <div class="row">
+                        <img class="responsive-img circle" src="{{ profile_data.profile_pic.url }}" alt="Profile Pic" height="200px" width="200px">
+                    </div>
+                </div>
+                <div class="col s8">
+                <div class="row">
+                  <table class="striped responsive-table">
+                    <tbody>
+                      <tr>
+                        <td>Name:</td>
+                        <td><h6>{{profile_data.first_name}} {{profile_data.last_name}}</h6></td>
+                      </tr>
+                      <tr>
+                        <td>ID#:</td>
+                        <td>ST-{{profile_data.id}}</td>
+                      </tr>
+                      <tr>
+                        <td>Gender:</td>
+                        <td>{{profile_data.info_gender}}</td>
+                      </tr>
+                      <tr>
+                        <td>Class:</td>
+                        <td>{{profile_data.info_class}}</td>
+                      </tr>
+                      <tr>
+                        <td>Institute:</td>
+                        <td>{{profile_data.institute}}</td>
+                      </tr>
+                      <tr>
+                        <td>Medium:</td>
+                        <td>{{profile_data.info_medium}}</td>
+                      </tr>
+                      <tr>
+                        <td>Present address:</td>
+                        <td>{{profile_data.address_present}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+              </div>
+            </li>
+            
+            <li class="collection-item">
+              <blockquote><h6> Posted Tuitions </h6></blockquote>
+              <table class="striped responsive-table">
+                 <thead>
+                   <tr>
+                     <th>Tuition ID</th>
+                     <th>Details</th>
+                     <th>Requests</th>
+                   </tr>
+                 <tbody>
+                     {% for ttn in posted_tution %}
+                      <tr>
+                          <td>TUITION-{{ttn.id}}</td>
+                          <td> <a href="{% url 'circular-detail' ttn.id %}">View</a></td>
+                          <td> <a href="{% url 'circular-requests' ttn.id %}">View</a></td>
+                      </tr>
+                     {% endfor %}
+                </tbody>
+              </table>
+            </li>
+
+            <li class="collection-item">
+              <blockquote><h6> Ongoing Tuitions </h6></blockquote>
+              <table class="striped responsive-table">
+                 <thead>
+                   <tr>
+                     <th>Tuition ID</th>
+                     <th>Details</th>
+                   </tr>
+                 <tbody>
+                     {% for ttn in ongoing_tution %}
+                      <tr>
+                          <td>TUITION-{{ttn.id}}</td>
+                          <td> <a href="{% url 'circular-detail' ttn.id %}">View</a></td>
+                      </tr>
+                     {% endfor %}
+                </tbody>
+              </table>
+            </li>
+            <li class="collection-item">
+              <blockquote><h6> Tution Finished </h6></blockquote>
+              <table class="striped responsive-table">
+                <thead>
+                  <tr>
+                    <th>Tuition ID</th>
+                    <th>Rating</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                     {% for ttn in finished_tution %}
+                      <tr>
+                          <td>TUITION-{{ttn.id}}</td>
+                          <td>
+                            {% for i in "x"|ljust:ttn.rating_given %}
+                            <i class="material-icons">grade</i>
+                            {% endfor %}
+                          </td>
+                          <td> <a href="{% url 'circular-detail' ttn.id %}">View</a></td>
+                      </tr>
+                     {% endfor %}
+                </tbody>
+              </table>
+            </li>
+          </ul>
+      </div>
+
+      <div class="col s3 card-panel">
+          <blockquote><h5> <a href="{% url 'user-update' %}">Edit Account </a> </h5></blockquote>
+          <blockquote><h5> <a href="{% url 'password_reset' %}">Password Reset</a> </h5></blockquote>
+      </div>
+    </div>
+  </div>
+{% endblock %}

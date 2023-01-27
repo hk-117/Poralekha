@@ -1,0 +1,90 @@
+{% extends 'main/base.html' %}
+{% block title %}
+    {{student.first_name}} {{student.last_name}}
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+
+    <!-- main profile -->
+
+    <blockquote><h5> Dashboard </h5></blockquote>
+    <div class="row">
+      <div class="col s9">
+          <ul class="collection">
+            <li class="collection-item">
+
+              <div class="row">
+                <div class="col s4">
+                    <div class="row">
+                        <img class="responsive-img circle" src="{{ student.profile_pic.url }}" alt="Profile Pic" height="200px" width="200px">
+                    </div>
+                </div>
+                <div class="col s8">
+                <div class="row">
+                  <table class="striped responsive-table">
+                    <tbody>
+                      <tr>
+                        <td>Name:</td>
+                        <td><h6>{{student.first_name}} {{student.last_name}}</h6></td>
+                      </tr>
+                      <tr>
+                        <td>ID#:</td>
+                        <td>ST-{{student.id}}</td>
+                      </tr>
+                      <tr>
+                        <td>Gender:</td>
+                        <td>{{student.info_gender}}</td>
+                      </tr>
+                      <tr>
+                        <td>Class:</td>
+                        <td>{{student.info_class}}</td>
+                      </tr>
+                      <tr>
+                        <td>Institute:</td>
+                        <td>{{student.institute}}</td>
+                      </tr>
+                      <tr>
+                        <td>Medium:</td>
+                        <td>{{student.info_medium}}</td>
+                      </tr>
+                      <tr>
+                        <td>Present address:</td>
+                        <td>{{student.address_present}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+      </div>
+      <div class="col s3 card-panel">
+        <blockquote><h5> Leave a message </h5></blockquote>
+        <br>
+        <form action="{% url 'sent-message' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="receiver_email" value="{{student.username.email}}">
+          <div class="input-field">
+            <input type="text" name="sender_name" placeholder="type your name..." class="validate" id="name">
+            <label for="name">Name</label>
+          </div>
+          <div class="input-field">
+            <input type="email" name="sender_email" placeholder="type your e-mail address..." class="validate" id="email">
+            <label for="email">E-mail address</label>
+          </div>
+          <div class="input-field">
+            <input type="text" name="sender_phone" placeholder="phone number..." class="validate" id="number">
+            <label for="number">Phone</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="textarea1" class="materialize-textarea" name="message"></textarea>
+            <label for="textarea1">Message</label>
+          </div>
+          <input type="submit" name="submit" value="Send Message" class="waves-effect waves-light btn card-panel">
+        </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

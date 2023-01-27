@@ -1,0 +1,198 @@
+{% extends 'main/base.html' %}
+{% block title %}
+    {{tutor.first_name}} {{tutor.last_name}}
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+
+    <!-- main profile -->
+
+    <blockquote><h5> Dashboard </h5></blockquote>
+    <div class="row">
+      <div class="col s9">
+          <ul class="collection">
+            <li class="collection-item">
+
+              <div class="row">
+                <div class="col s4">
+                    <div class="row">
+                        <img class="responsive-img circle" src="{{ tutor.profile_pic.url }}" alt="Profile Pic" height="200px" width="200px">
+                    </div>
+                    <div class="row">
+                        {% if tutor.is_premium %}
+                        <div class="center-align deep-purple lighten-5 green-text">Premium Tutor</div>
+                        {% else %}
+                            <div class="center-align deep-purple lighten-5 indigo-text"> Not Premium Tutor</div>
+                        {% endif %}
+                    </div>
+                    <div class="row center-align">
+                        {% for i in "x"|ljust:tutor.rating %}
+                        <i class="material-icons">grade</i>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col s8">
+                <div class="row">
+                  <table class="striped responsive-table">
+                    <tbody>
+                      <tr>
+                        <td>Name:</td>
+                        <td><h6>{{tutor.first_name}} {{tutor.last_name}}</h6></td>
+                      </tr>
+                      <tr>
+                        <td>Gender:</td>
+                        <td>{{tutor.gender}}</td>
+                      </tr>
+                      <tr>
+                        <td>Quatification:</td>
+                        <td>{{tutor.qualification}}</td>
+                      </tr>
+                      <tr>
+                        <td>Institute:</td>
+                        <td>{{tutor.institute}}</td>
+                      </tr>
+                      <tr>
+                        <td>Teaching:</td>
+                        <td>{{tutor.preffered_subject}}</td>
+                      </tr>
+                      <tr>
+                        <td>Present address:</td>
+                        <td>{{tutor.address_present}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                 </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="collection-item">
+
+              <blockquote><h6> Basic Info </h6></blockquote>
+              <table class="striped responsive-table">
+                <tbody>
+                  <tr>
+                    <td><strong>Expected minimum salary</strong></td>
+                    <td>{{tutor.expected_salary}} Tk/Month</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Current Status for Tution</strong></td>
+                    {% if tutor.tution_status %}
+                        <td>Available</td>
+                    {% else %}
+                        <td> Unavailable </td>
+                    {% endif %}
+                  </tr>
+                  <tr>
+                    <td><strong>Days per Week</strong></td>
+                    <td>{{tutor.working_days}} Days/Week</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preferred tution style</strong></td>
+                    <td>Private Tution</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Place of Learning</strong></td>
+                    <td>{{tutor.place_of_learning}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Extra Facilities</strong></td>
+                    <td>{{tutor.extra_facilities}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preffered Medium of Version</strong></td>
+                    <td>{{tutor.preffered_medium}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preffered Class</strong></td>
+                    <td>{{tutor.preffered_class}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preffered Subjects</strong></td>
+                    <td>{{tutor.preffered_subject}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preferred Time</strong></td>
+                    <td>{{tutor.preffered_time}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preffered Area to Teach</strong></td>
+                    <td>{{tutor.address_covered}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </li>
+
+            <li class="collection-item">
+
+              <blockquote><h6> Educational Qualification </h6></blockquote>
+              <table class="striped responsive-table">
+                <thead>
+                  <tr>
+                    <th>Exam Name</th>
+                    <th>Year</th>
+                    <th>Institute</th>
+                    <th>Group/Subject</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td>SSC</td>
+                      <td>{{tutor.ssc_exam_year}}</td>
+                      <td>{{tutor.ssc_institute}}</td>
+                      <td>{{tutor.ssc_subject}}</td>
+                      <td>{{tutor.ssc_result}}</td>
+                  </tr>
+                  <tr>
+                      <td>HSC</td>
+                      <td>{{tutor.hsc_exam_year}}</td>
+                      <td>{{tutor.hsc_institute}}</td>
+                      <td>{{tutor.hsc_subject}}</td>
+                      <td>{{tutor.hsc_result}}</td>
+                  </tr>
+                  <tr>
+                      <td>Honours</td>
+                      <td>{{tutor.honours_exam_year}}</td>
+                      <td>{{tutor.institute}}</td>
+                      <td>{{tutor.honours_subject}}</td>
+                      <td>{{tutor.honours_result}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </li>
+          </ul>
+      </div>
+
+      <!-- mailing purpose -->
+      <div class="col s3 card-panel">
+        <blockquote><h5> Leave a message </h5></blockquote>
+        <br>
+        <form action="{% url 'sent-message' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="receiver_email" value="{{tutor.username.email}}">
+          <div class="input-field">
+            <input type="text" name="sender_name" placeholder="type your name..." class="validate" id="name">
+            <label for="name">Name</label>
+          </div>
+          <div class="input-field">
+            <input type="email" name="sender_email" placeholder="type your e-mail address..." class="validate" id="email">
+            <label for="email">E-mail address</label>
+          </div>
+          <div class="input-field">
+            <input type="text" name="sender_phone" placeholder="phone number..." class="validate" id="number">
+            <label for="number">Phone</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="textarea1" class="materialize-textarea" name="message"></textarea>
+            <label for="textarea1">Message</label>
+          </div>
+          <input type="submit" name="submit" value="Send Message" class="waves-effect waves-light btn card-panel">
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

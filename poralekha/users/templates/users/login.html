@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Login
+{% endblock %}
+
+{% block main %}
+  <br>
+  <br>
+  <div class="row">
+    <form class="col s12" action="{% url 'users-login' %}" method="POST">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col s4 offset-s4 card-panel">
+          <br><br>
+          <div class="row">
+            <div class="input-field col s12">
+                {{ form.as_p }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s4 offset-s2">
+              <input type="submit" value="Login" class="btn">
+            </div>
+            <div class="input-field col s5 offset-s1">
+                <a href="{% url 'user-mail-verify' %}" class="btn red">Register</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s10 offset-s2">
+                <h6>Forgotten password ? <a href="{% url 'password_reset' %}">Click Here</a></h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}

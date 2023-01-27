@@ -1,0 +1,54 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+  FAQs
+{% endblock %}
+{% block main %}
+  <!--Main content start -->
+  <div class="container">
+    <div class="card-panel lime lighten-5">
+      <h3 class="center-align card-panel">FAQs</h3>
+      <div class="divider"></div>
+      <div class="section">
+        <h5 class="center-align">Students (FAQ)</h5>
+          <ul class="collapsible">
+            {% for f in faqList %}
+              {% if f.faq_type is 0 %}
+              <li>
+                <div class="collapsible-header"><i class="material-icons">help</i>{{f.faq_title}}</div>
+                <div class="collapsible-body">
+                  <i class="material-icons">question_answer</i><br>
+                  <span>{{f.faq_details}}</span>
+                </div>
+              </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <h5 class="center-align">Teachers (FAQ)</h5>
+        <ul class="collapsible">
+          {% for f in faqList %}
+            {% if f.faq_type is 1 %}
+            <li>
+              <div class="collapsible-header"><i class="material-icons">help</i>{{f.faq_title}}</div>
+              <div class="collapsible-body">
+                <i class="material-icons">question_answer</i><br>
+                <span>{{f.faq_details}}</span>
+              </div>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--End of Main Content -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.collapsible');
+      var instances = M.Collapsible.init(elems, {});
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+  Requests
+{% endblock %}
+{% block main %}
+  <!--Main content start -->
+  <div class="container">
+    <div class="card-panel lime lighten-5">
+      <h3 class="center-align card-panel">Requests</h3>
+      <div class="divider"></div>
+      <div class="section">
+          <ul class="collapsible">
+            {% for req in requests %}
+              <li>
+                  <div class="collapsible-header"> 
+                      <a href="{% url 'tutor-detail' req.tutor.id %}"> {{req.tutor}} </a> 
+                      --||-- is requesting for --||--
+                      <a href="{% url 'circular-detail' req.tution.id %}"> {{req.tution}} </a>
+                  </div>
+                <div class="collapsible-body">
+                    <div class="row">
+                        <form action="{% url 'circular-requests' req.tution.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="req_by" value="{{req.tutor.id}}">
+                            <div class="col s4">
+                                <input type="submit" name="confirm" class="btn green" value="Confirm"/>
+                            </div>
+                            <div class="col s4 offset-s4">
+                                <input type="submit" name="cancel" class="btn red" value="Cancel"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+      </div>
+    </div>
+  </div>
+  <!--End of Main Content -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.collapsible');
+      var instances = M.Collapsible.init(elems, {});
+    });
+  </script>
+{% endblock %}

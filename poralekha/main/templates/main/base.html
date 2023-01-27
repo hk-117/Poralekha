@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>{% block title %} {% endblock %}</title>
+    {% block head %}
+
+    {% endblock %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .errorlist{
+            color: rgba(249, 4, 4, 0.87);
+        }
+        .helptext{
+            color: green;
+            font-size:small;
+        }
+    </style>
+  </head>
+  <body>
+    {% include 'main/includes/navbar.html' %}
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+            document.addEventListener('DOMContentLoaded',function(){
+                M.toast({html:"{{message}}"})
+            });
+        </script>
+        {% endfor %}
+    {% endif %}
+    <!--Main content start -->
+    {% block main %}
+
+    {% endblock %}
+    <!--End of Main Content -->
+    {% include 'main/includes/footer.html' %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems, {});
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>

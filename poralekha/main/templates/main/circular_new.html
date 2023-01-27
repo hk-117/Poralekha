@@ -1,0 +1,101 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Create Circular
+{% endblock %}
+
+{% block main %}
+  <br>
+  <br>
+  <div class="row">
+      <form class="col s12" action="{% url 'circular-new' %}" method="POST">
+      {% csrf_token %}
+      <div class="row">
+          <div class="col s9 offset-s3">
+            <div class="container card-panel">
+              <div class="row">
+                <blockquote> <h4> Fill Up The Form </h4> </blockquote>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                    <label for="{{form.post_title.id_for_label}}">Title</label>
+                      {{form.post_title}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    {{form.student_class}}
+                    <label>Class</label>
+                </div>
+                <div class="input-field col s6">
+                    {{form.student_medium}}
+                    <label>Medium</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <label for="{{form.student_location.id_for_label}}">Location</label>
+                     {{form.student_location}}
+                </div>
+                <div class="input-field col s6">
+                    {{form.student_district}}
+                    <label>Select District</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    {{form.student_gender}}
+                    <label>Student Gender</label>
+                </div>
+                <div class="input-field col s6">
+                    {{form.student_subjects}}
+                    <label> Select Subjects</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <label for="{{form.student_number.id_for_label}}">Total Student</label>
+                        {{form.student_number}}
+                </div>
+                <div class="input-field col s6">
+                    <label for="{{form.salary.id_for_label}}">Salary</label>
+                        {{form.salary}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    {{form.requirement_gender}}
+                    <label> Gender Preference</label>
+                </div>
+                <div class="input-field col s6">
+                    {{form.requirement_teaching_time}}
+                    <label> Time Preference</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <label for="{{form.requirement_days_per_week.id_for_label}}">Days/Week</label>
+                        {{form.requirement_days_per_week}}
+                </div>
+                <div class="input-field col s6">
+                    <label for="{{form.requirement_others.id_for_label}}">Other Requirements</label>
+                    {{form.requirement_others}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s4 offset-s4">
+                  <input type="submit" value="Create Circular" class="btn red">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </form>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, {});
+    });
+  </script>
+{% endblock %}

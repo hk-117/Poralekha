@@ -1,0 +1,237 @@
+{% extends 'main/base.html' %}
+{% block title %}
+    {{profile_data.first_name}} {{profile_data.last_name}}
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+
+    <!-- main profile -->
+
+    <blockquote><h5> Dashboard </h5></blockquote>
+    <div class="row">
+      <div class="col s9">
+          <ul class="collection">
+            <li class="collection-item">
+              <div class="row">
+                <div class="col s4">
+                    <div class="row">
+                        <img class="responsive-img circle" src="{{ profile_data.profile_pic.url }}" alt="Profile Pic" height="200px" width="200px">
+                    </div>
+                    <div class="row">
+                        {% if profile_data.is_premium %}
+                            <div class="center-align deep-purple lighten-5 green-text">Premium Tutor</div>
+                        {% else %}
+                            <div class="center-align deep-purple lighten-5 indigo-text"> Not Premium Tutor</div>
+                        {% endif %}
+                    </div>
+                    <div class="row center-align">
+                        <div class="row center-align">
+                            {% for i in "x"|ljust:profile_data.rating %}
+                            <i class="material-icons">grade</i>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col s8">
+                 <div class="row">
+                  <table class="striped responsive-table">
+                    <tbody>
+                      <tr>
+                        <td>Name:</td>
+                        <td><h6>{{profile_data.first_name}} {{profile_data.last_name}}</h6></td>
+                      </tr>
+                      <tr>
+                        <td>Gender:</td>
+                        <td>{{profile_data.gender}}</td>
+                      </tr>
+                      <tr>
+                        <td>Quatification:</td>
+                        <td>{{profile_data.qualification}}</td>
+                      </tr>
+                      <tr>
+                        <td>Institute:</td>
+                        <td>{{profile_data.institute}}</td>
+                      </tr>
+                      <tr>
+                        <td>Teaching:</td>
+                        <td>{{profile_data.preffered_subject}}</td>
+                      </tr>
+                      <tr>
+                        <td>Present address:</td>
+                        <td>{{profile_data.address_present}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="collection-item">
+
+              <blockquote><h6> Basic Info </h6></blockquote>
+              <table class="striped responsive-table">
+                <tbody>
+                  <tr>
+                    <td><strong>Expected minimum salary</strong></td>
+                    <td>{{profile_data.expected_salary}} Tk/Month</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Current Status for Tution</strong></td>
+                    {% if profile_data.tution_status %}
+                        <td>Available</td>
+                    {% else %}
+                        <td> Unavailable </td>
+                    {% endif %}
+                  </tr>
+                  <tr>
+                    <td><strong>Days per Week</strong></td>
+                    <td>{{profile_data.working_days}} Days/Week</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preferred tution style</strong></td>
+                    <td>Private Tution</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Place of Learning</strong></td>
+                    <td>{{profile_data.place_of_learning}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Extra Facilities</strong></td>
+                    <td>{{profile_data.extra_facilities}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preffered Medium of Version</strong></td>
+                    <td>{{profile_data.preffered_medium}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preffered Class</strong></td>
+                    <td>{{profile_data.preffered_class}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preffered Subjects</strong></td>
+                    <td>{{profile_data.preffered_subject}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preferred Time</strong></td>
+                    <td>{{profile_data.preffered_time}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Preffered Area to Teach</strong></td>
+                    <td>{{profile_data.address_covered}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </li>
+
+            <li class="collection-item">
+
+              <blockquote><h6> Educational Qualification </h6></blockquote>
+              <table class="striped responsive-table">
+                <thead>
+                  <tr>
+                    <th>Exam Name</th>
+                    <th>Year</th>
+                    <th>Institute</th>
+                    <th>Group/Subject</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td>SSC</td>
+                      <td>{{profile_data.ssc_exam_year}}</td>
+                      <td>{{profile_data.ssc_institute}}</td>
+                      <td>{{profile_data.ssc_subject}}</td>
+                      <td>{{profile_data.ssc_result}}</td>
+                  </tr>
+                  <tr>
+                      <td>HSC</td>
+                      <td>{{profile_data.hsc_exam_year}}</td>
+                      <td>{{profile_data.hsc_institute}}</td>
+                      <td>{{profile_data.hsc_subject}}</td>
+                      <td>{{profile_data.hsc_result}}</td>
+                  </tr>
+                  <tr>
+                      <td>Honours</td>
+                      <td>{{profile_data.honours_exam_year}}</td>
+                      <td>{{profile_data.institute}}</td>
+                      <td>{{profile_data.honours_subject}}</td>
+                      <td>{{profile_data.honours_result}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </li>
+            <li class="collection-item">
+            <blockquote><h6> Tuition Finished </h6></blockquote>
+              <table class="striped responsive-table">
+                 <thead>
+                   <tr>
+                     <th>Tuition ID</th>
+                     <th>Rating</th>
+                     <th>Details</th>
+                   </tr>
+                 <tbody>
+                     {% for ttn in finished_tution %}
+                      <tr>
+                          <td>TUITION-{{ttn.id}}</td>
+                          <td>
+                            {% for i in "x"|ljust:ttn.rating_given %}
+                            <i class="material-icons">grade</i>
+                            {% endfor %}
+                          </td>
+                          <td> <a href="{% url 'circular-detail' ttn.id %}">View</a></td>
+                      </tr>
+                     {% endfor %}
+                </tbody>
+              </table>
+            </li>
+            <li class="collection-item">
+            <blockquote><h6> Tuition Ongoing </h6></blockquote>
+              <table class="striped responsive-table">
+                 <thead>
+                   <tr>
+                     <th>Tuition ID</th>
+                     <th>Details</th>
+                   </tr>
+                 <tbody>
+                     {% for ttn in ongoing_tution %}
+                      <tr>
+                          <td>TUITION-{{ttn.id}}</td>
+                          <td> <a href="{% url 'circular-detail' ttn.id %}">View</a></td>
+                      </tr>
+                     {% endfor %}
+                </tbody>
+              </table>
+            </li>
+            <li class="collection-item">
+            <blockquote><h6> Applied Tuition </h6></blockquote>
+              <table class="striped responsive-table">
+                 <thead>
+                   <tr>
+                     <th>Tuition ID</th>
+                     <th>Details</th>
+                   </tr>
+                 <tbody>
+                     {% for ttn in applied_tution %}
+                      <tr>
+                          <td>TUITION-{{ttn.tution.id}}</td>
+                          <td> <a href="{% url 'circular-detail' ttn.tution.id %}">View</a></td>
+                      </tr>
+                     {% endfor %}
+                </tbody>
+              </table>
+            </li>
+          </ul>
+      </div>
+
+      <div class="col s3 card-panel">
+          <blockquote><h5> <a href="{% url 'user-update' %}">Edit Account </a> </h5></blockquote>
+          <blockquote><h5> <a href="{% url 'password_reset' %}">Password Reset</a> </h5></blockquote>
+      </div>  
+    </div>
+  </div>
+{% endblock %}

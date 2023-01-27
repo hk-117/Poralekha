@@ -1,0 +1,154 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  Tution Details
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+    <div class="card-panel">
+        <blockquote><h4> {{tution.post_title}} </h4></blockquote>
+        <div class="row">
+          <div class="col s12">
+              <p>
+                <strong>Job ID: </strong> <i>{{tution.id}}</i> | 
+                <strong>Created Date: </strong> <i>{{tution.time_created}} </i> | 
+                <strong> Posted By: </strong> <i><a href="{% url 'student-detail' tution.posted_by.id%}">{{tution.posted_by}}</a></i>
+              </p>
+          </div>
+        </div>
+        <blockquote><h6> Basic Details </h6></blockquote>
+        <div class="row">
+          <div class="col s3">
+            <p>
+              <strong>Category: </strong>
+              <br>
+              <i>{{tution.student_medium}}</i>
+            </p>
+          </div>
+          <div class="col s3">
+            <p>
+              <strong>Student Gender: </strong>
+              <br>
+              <i>{{tution.student_gender}}</i>
+            </p>
+          </div>
+          <div class="col s3">
+            <p>
+              <strong>Tutor Gender: </strong>
+              <br>
+              <i>{{tution.requirement_gender}}</i>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3">
+            <p>
+              <strong>Tutoring Time: </strong>
+              <br>
+              <i>{{tution.requirement_teaching_time}}</i>
+            </p>
+          </div>
+          <div class="col s3">
+            <p>
+              <strong>Tutoring Days: </strong>
+              <br>
+              <i>{{tution.requirement_days_per_week}} Days/Week</i>
+            </p>
+          </div>
+          <div class="col s3">
+            <p>
+              <strong>No of students: </strong>
+              <br>
+              <i>{{tution.student_number}}</i>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3">
+            <p>
+              <strong>Salary: </strong>
+              <br>
+              <i>{{tution.salary}}</i>
+            </p>
+          </div>
+          <div class="col s3">
+            <p>
+              <strong>Subjects: </strong>
+              <br>
+              <i>{{tution.student_subjects}}</i>
+            </p>
+          </div>
+          <div class="col s3">
+            <p>
+              <strong>Class: </strong>
+              <br>
+              <i>{{tution.student_class}}</i>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3">
+            <p>
+              <strong>Location: </strong>
+              <br>
+              <i>{{tution.student_location}}</i>
+            </p>
+          </div>
+          {% if tution.confirmed %}
+          <div class="col s3">
+            <p>
+              <strong>Tutor: </strong>
+              <br>
+              <i><a href="{% url 'tutor-detail' tution.tutor.id %}">{{tution.tutor}}</a></i>
+            </p>
+          </div>
+          {% endif %}
+          {% if tution.ended %}
+          <div class="col s3">
+            <p>
+              <strong>Rating: </strong>
+              <br>
+                {% for i in "x"|ljust:tution.rating_given %}
+                <i class="material-icons">grade</i>
+                {% endfor %}
+            </p>
+          </div>
+          {% endif %}
+        </div>
+        <blockquote><h6> Other Requirements - </h6></blockquote>
+        <div class="row">
+          <div class="col s3">
+              <i>{{tution.requirement_others}}</i>
+          </div>
+        </div>
+        <div class="row">
+            {% if user.first_name == "S" %}
+                {% if tution.posted_by.username.username == user.username and not tution.ended %}
+              <div class="col s3">
+                  <a href="{% url 'circular-update' tution.id %}" class="btn-floating btn-large green pulse"> Update</a>
+              </div>
+              <div class="col s3">
+                  <a href="{% url 'circular-delete' tution.id %}" class="btn-floating btn-large red pulse"> Delete</a>
+              </div>
+              <div class="col s3">
+                  <a href="{% url 'circular-requests' tution.id %}" class="btn-floating btn-large grey pulse">Request</a>
+              </div>
+                  {% if tution.confirmed %}
+                      <div class="col s3">
+                          <a href="{% url 'circular-finish' tution.id %}" class="btn-floating btn-large red pulse"> Finish </a>
+                      </div>
+                  {% endif %}
+              {% endif %}
+            {% elif user.first_name == "T" and not tution.ended %}
+              <div class="col s3">
+                  <form action="{% url 'circular-apply' tution.id %}" method="POST">
+                      {% csrf_token %}
+                      <input type="submit" class="btn-floating btn-large cyan pulse" value="Apply"/>
+                  </form>
+              </div>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+{% endblock %}
