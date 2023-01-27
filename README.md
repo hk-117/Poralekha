@@ -28,15 +28,15 @@ Circulars page contains the list of the recent circulars. These circulars can be
 
 Guest user only can view the circular details
 
-[Guest user circular view](pics/circular\ details\ guest\ user.png)
+[Guest user circular view](pics/circular_details_guest_user.png)
 
 Tutor can view the apply option in circular details page
 
-[Tutor circular view](pics/circular details tutor view.png)
+[Tutor circular view](pics/circular_details_tutor_view.png)
 
 Circular giver Student can modify, edit or delete this and view requests
 
-[Student circular view](pics/circular details student view.png)
+[Student circular view](pics/circular_details_student_view.png)
 
 # Frameworks Used
 
