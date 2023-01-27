@@ -44,10 +44,24 @@ Tutors page contains the list of all the tutors showing little information
 
 ![Tutor list page](pics/tutor_list.png)
 
+Clicking on a tutor tutor details can be viewed
+
+![Tutor details](pics/tutor_details_1.png)
+
+![Tutor details](pics/tutor_details_2.png)
+
+## Other pages
+
+It also contains [login page](pics/login_page.png), [register page](pics/register.png), [password reset page](pics/pass_reset.png), [about us page](pics/about_us.png), Faqs page, [student details](pics/student_details.png), [tuition request notice page](pics/tuition_request.png).
+
+Also, create circulars, admin panel has some functionalities...
+
 # Frameworks Used
-
-# Features
-
-# Setup
+ - Django
+ - Materialize CSS
 
 # Required Libraries
+ - django
+ - django-crispy-forms
+ - django-filters
+ - pillow
